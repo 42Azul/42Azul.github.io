@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.1.9"
+    "@astrojs/preact": "^4.0.3",
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^5.1.9",
+    "preact": "^10.25.4",
+    "tailwindcss": "^3.4.17"
   }
 }

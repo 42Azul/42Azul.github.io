@@ -1,0 +1,19 @@
+---
+import portfolioData from '../data/portfolioData.json';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseItem from '../components/BaseItem.astro';
+
+const { experience } = portfolioData;
+---
+
+<BaseLayout>
+  <section class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center mb-8">{experience.title}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {experience.items.map((exp) => (
+        <BaseItem {...exp} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

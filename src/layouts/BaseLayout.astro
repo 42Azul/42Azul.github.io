@@ -1,0 +1,165 @@
+---
+/**
+ * BaseLayout.astro
+ * A layout that uses client-side fetching for smooth transitions.
+ * The key points:
+ *   - Attach nav link handlers once (header doesn't change)
+ *   - Attach content link handlers after each fetch
+ */
+ const currentPath = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <!-- Include Tailwind or your CSS build if needed -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header class="bg-white shadow-md w-full fixed top-0 left-0 z-50">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">Fernando</div>
+        <div class="space-x-6">
+          <a
+            href="/"
+            class={`nav-link ${currentPath === '/' ? 'active' : ''}`}
+          >
+            About Me
+          </a>
+          <a
+            href="/projects"
+            class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`}
+          >
+            Projects
+          </a>
+          <a
+            href="/formation"
+            class={`nav-link ${currentPath === '/formation' ? 'active' : ''}`}
+          >
+            Formation
+          </a>
+          <a
+            href="/experience"
+            class={`nav-link ${currentPath === '/experience' ? 'active' : ''}`}
+          >
+            Experience
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content (Smoothly Updated) -->
+    <main id="content" class="mt-20 p-6 flex-grow fade-container">
+      <slot />
+    </main>
+
+    <!-- Smooth Navigation Script -->
+    <script type="module" client:load>
+      // We'll track whether we've initialized the header nav links so we don't do it multiple times
+      let navInitialized = false;
+
+      // The main container we'll be replacing
+      const contentContainer = document.getElementById('content');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initNavLinks();                 // run once for the header
+        initContentLinks(contentContainer); // run for the <main> content
+      });
+
+      // This runs if user presses back/forward
+      window.addEventListener('popstate', () => {
+        navigateTo(window.location.pathname);
+      });
+
+      function initNavLinks() {
+        if (navInitialized) return; // ensure we only do this once
+        navInitialized = true;
+
+        const headerLinks = document.querySelectorAll('header .nav-link');
+        headerLinks.forEach((link) => {
+          const url = new URL(link.href, window.location.origin);
+          // Only same-origin links
+          if (url.origin === window.location.origin) {
+            link.addEventListener('click', (e) => {
+              if (link.target === '_blank' || url.pathname === window.location.pathname) return;
+              e.preventDefault();
+              navigateTo(url.pathname);
+            });
+          }
+        });
+      }
+
+      function initContentLinks(container) {
+        // Attach link handlers for newly loaded content
+        const links = container.querySelectorAll('a');
+        links.forEach((link) => {
+          const url = new URL(link.href, window.location.origin);
+          if (url.origin !== window.location.origin) return;
+
+          link.addEventListener('click', (e) => {
+            if (link.target === '_blank' || url.pathname === window.location.pathname) return;
+            e.preventDefault();
+            navigateTo(url.pathname);
+          });
+        });
+      }
+
+      function navigateTo(path) {
+        // Fade out
+        contentContainer.classList.remove('fade-in');
+        contentContainer.classList.add('fade-out');
+
+        setTimeout(async () => {
+          // Fetch new HTML
+          const resp = await fetch(path);
+          const html = await resp.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          // Replace #content only
+          const newMainContent = doc.getElementById('content');
+          if (newMainContent) {
+            contentContainer.innerHTML = newMainContent.innerHTML;
+          }
+
+          // Fade in
+          contentContainer.classList.remove('fade-out');
+          contentContainer.classList.add('fade-in');
+
+          // Update history
+          window.history.pushState({}, '', path);
+
+          // Update nav link highlight
+          updateActiveLink(path);
+
+          // Re-init link handlers in new content
+          initContentLinks(contentContainer);
+
+          // Remove fade-in after animation so fade-out can be triggered again later
+          contentContainer.addEventListener(
+            'animationend',
+            () => {
+              contentContainer.classList.remove('fade-in');
+            },
+            { once: true }
+          );
+        }, 300); // match your fade-out time
+      }
+
+      function updateActiveLink(newPath) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          const linkUrl = new URL(link.href, window.location.origin);
+          if (linkUrl.pathname === newPath) {
+            link.classList.add('active');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

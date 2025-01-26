@@ -1,11 +1,22 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import jsonData from '../data/portfolioData.json';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const about = jsonData.about;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <section class="flex flex-col items-center text-center py-12">
+    <img src={about.profilePicture} alt="Profile Picture" class="rounded-full w-48 h-48 mb-6" />
+    <h1 class="text-4xl font-bold">{about.title}</h1>
+    <p class="text-xl mt-4">{about.description}</p>
+    <div class="mt-6 space-x-4">
+      <a href={about.contact.github} class="text-blue-500 hover:underline">GitHub</a>
+      <a href={about.contact.linkedin} class="text-blue-500 hover:underline">LinkedIn</a>
+      <a href={`mailto:${about.contact.email}`} class="text-blue-500 hover:underline">Email</a>
+    </div>
+    <a href={about.resume} class="mt-8 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      Download Resume
+    </a>
+  </section>
+</BaseLayout>

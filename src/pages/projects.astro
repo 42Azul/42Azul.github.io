@@ -1,0 +1,19 @@
+---
+import jsonData from '../data/portfolioData.json';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseItem from '../components/BaseItem.astro';
+
+const projects = jsonData.projects;
+---
+
+<BaseLayout>
+  <section class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center mb-8">{projects.title}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.items.map((project) => (
+        <BaseItem {...project} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
