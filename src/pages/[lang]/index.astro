@@ -1,0 +1,53 @@
+---
+// src/pages/[lang]/about.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import enData from '../../data/portfolioData.en.json';
+import esData from '../../data/portfolioData.es.json';
+
+const { lang } = Astro.params;
+const portfolioData = lang === 'es' ? esData : enData;
+const about = portfolioData.about;
+
+export function getStaticPaths(){
+  return [
+  {params : { lang: 'en'  }},
+  {params : { lang: 'es'  }},
+];
+}
+
+// So that our BaseLayout can highlight the current nav link properly, we
+// can pass something like a "currentPath" = 'about'.
+
+---
+
+
+
+<BaseLayout lang={lang} currentPath="about">
+  <section class="flex flex-col items-center text-center py-12">
+    <img
+      src={about.profilePicture}
+      alt="Profile Picture"
+      class="rounded-full w-48 h-48 mb-6"
+    />
+    <h1 class="text-4xl font-bold">{about.title}</h1>
+    <p style="white-space: pre-wrap;" class="text-xl mt-4">
+      {about.description}
+    </p>
+
+    <div class="mt-6 space-x-4">
+      <a href={about.contact.github} class="text-blue-500 hover:underline">GitHub</a>
+      <a href={about.contact.linkedin} class="text-blue-500 hover:underline">LinkedIn</a>
+      <a href={`mailto:${about.contact.email}`} class="text-blue-500 hover:underline">Email</a>
+    </div>
+
+    <a
+      href={about.resume}
+      download="resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      {lang === 'es' ? 'Descargar CV' : 'Download Resume'}
+    </a>
+  </section>
+</BaseLayout>

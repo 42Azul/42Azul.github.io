@@ -1,0 +1,166 @@
+{
+  "about": {
+    "title": "Fernando de la Gándara Fernández",
+    "description": "Software Developer with experience in backend development and algorithmic problem-solving. \n Missionary of appealing products.",
+    "profilePicture": "/src/data/profile.jpg",
+    "contact": {
+      "email": "ferdelagandara@gmail.com",
+      "github": "https://github.com/42Azul",
+      "linkedin": "https://linkedin.com/in/fdgandara/"
+    },
+    "resume": "/cv.pdf"
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "name": "Computer Engineering and Mathematics (Double Degree)",
+        "description": "Bachelor's degree in Computer Engineering and Mathematics, with thesis based on unbalanced sets in Machine Learning.",
+        "place": "Universidad de Murcia",
+        "from": "2018",
+        "to": "2023"
+      },
+      {
+        "name": "Computer Engineering and Mathematics (Double Degree)",
+        "description": "SICUE exchange program to learn about how different universities approach the same subjects.",
+        "place": "Universidad Complutense de Madrid",
+        "from": "2021",
+        "to": "2022"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "Some of my expertise areas, but still open to learn more!",
+    
+    "skills":[
+      {
+        "name": "🇪🇸",
+        "type": "language",
+        "level": "Native"
+      },
+      {
+        "name": "🇬🇧",
+        "type": "language",
+        "level": "C1"
+      },
+      {
+        "name": "🇫🇷",
+        "type": "language",
+        "level": "B1"
+      },
+      {
+        "name": "Java",
+        "type": "coding",
+        "level": "C1"
+      },
+      {
+        "name": "Python",
+        "type": "coding",
+        "level": "C1"
+      },
+      {
+        "name": "Javascript/TypeScript",
+        "type": "coding",
+        "level": "B1"
+      },
+      {
+        "name": "C++",
+        "type": "coding",
+        "level": "C1"
+      },
+      {
+        "name": "Bash",
+        "type": "coding",
+        "level": "C1"
+      },
+      {
+        "name": "Git",
+        "type": "tools",
+        "level": "C2"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "tools",
+        "level": "B1"
+      },
+      {
+        "name": "Quarkus",
+        "type": "coding",
+        "level": "B2"
+      },
+      {
+        "name": "Spring",
+        "type": "coding",
+        "level": "B1"
+      },
+      {
+        "name": "Couchbase",
+        "type": "tools",
+        "level": "C1"
+      },
+      {
+        "name": "OpenAPI",
+        "type": "tools",
+        "level": "B2"
+      },
+      {
+        "name": "ArgoCD",
+        "type": "tools",
+        "level": "B2"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Personal Projects",
+    "items": [
+      {
+        "name": "Competitive Programming",
+        "description": "Participation in the SWERC (South Western Europe Regional Contest). It consists on a 3 members team solving complex algorithmic challenges in a pressure environment. Ranked 55th in 2022/2023, 46th in 2020/2021, and 80th in 2019/2020.",
+        "link":"https://www.um.es/web/informatica/inicio/-/asset_publisher/9oPl8OoMB0qA/content/id/37746163"
+      },
+      {
+        "name": "Advent of Code",
+        "description": "Each Advent, 25 different coding problems are released, one each day. The goal is to solve them as fast as possible. I created a repository with my solutions  and explanations for each problem. For the time being it is only 2024, but I plan to keep expanding it in the future.",
+        "link":"https://github.com/42Azul/AdventOfCode2024"
+      },
+      {
+        "name": "Local NAS with Debian & OpenMediaVault",
+        "description": "NAS setup for family picture sharing and P2P file sharing, with extra automation through bash scripts and a Python Telegram bot.",
+        "link": "https://www.openmediavault.org/"
+      },
+      {
+        "name": "Pokemon TCG Pocket Stats & Collection Web",
+        "description": "Web application for managing a collection of cards for the mobile game and allowing offline capabilities to maintain and check statistics on your collections.",
+        "link":"https://pokemon-tcg-pocket-web.vercel.app/"
+      }
+      
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "items": [
+      {
+        "name": "Backend Developer at ALTEN - AMADEUS",
+        "description": "Service Oriented APIs development with Quarkus + OpenAPI and Couchbase as NoSQL database. Usage of Kubernetes and ArgoCD for deployment and management of the application lifecycle. \n Maintenance of legacy C++ functionalities.",
+        "place": "Nice, France",
+        "from": "2023",
+        "to": "Present"
+      },
+      {
+        "name": "Javascript API Developer at PROSEI",
+        "description": "Internship focused on API development. The objective was to simplify users connections to a third-party service to automatically digitalize and manage the documents and bills of their company.",
+        "place": "Murcia/Remote",
+        "from": "2020",
+        "to": "2020"
+      },
+      {
+        "name": "Scout Leader at Mafeking 133",
+        "description": "Active participation in leadership and animation of youth groups from 11 to 17 years old.",
+        "place": "Cartagena, Spain",
+        "from": "2017",
+        "to": "2023"
+      }
+    ]
+  }
+}

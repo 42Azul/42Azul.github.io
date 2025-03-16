@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseItem from '../../components/BaseItem.astro';
+
+import enData from '../../data/portfolioData.en.json';
+import esData from '../../data/portfolioData.es.json';
+
+const { lang } = Astro.params;
+const portfolioData = lang === 'es' ? esData : enData;
+
+export function getStaticPaths(){
+  return [
+  {params : { lang: 'en'  }},
+  {params : { lang: 'es'  }},
+];
+}
+
+const { experience } = portfolioData;
+---
+
+<BaseLayout lang={lang} currentPath="experience">
+  <section class="container mx-auto px-6 py-12 space-y-12">
+    <h1 class="text-4xl font-bold text-center mb-12">{experience.title}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-12 gap-6">
+      {experience.items.map((exp) => (
+        <BaseItem {...exp} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

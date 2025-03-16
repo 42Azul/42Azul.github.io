@@ -1,0 +1,165 @@
+{
+    "about": {
+      "title": "Fernando de la Gándara Fernández",
+      "description": "Desarrollador de software con experiencia en desarrollo backend y resolución de problemas algorítmicos. \n Misionero de productos atractivos.",
+      "profilePicture": "/src/data/profile.jpg",
+      "contact": {
+        "email": "ferdelagandara@gmail.com",
+        "github": "https://github.com/42Azul",
+        "linkedin": "https://linkedin.com/in/fdgandara/"
+      },
+      "resume": "/cv.pdf"
+    },
+    "education": {
+      "title": "Formación",
+      "items": [
+        {
+          "name": "Ingeniería Informática y Matemáticas (Doble Grado)",
+          "description": "Grado en Ingeniería Informática y Matemáticas, con TFG basado en conjuntos desbalanceados en Machine Learning.",
+          "place": "Universidad de Murcia",
+          "from": "2018",
+          "to": "2023"
+        },
+        {
+          "name": "Ingeniería Informática y Matemáticas (Doble Grado)",
+          "description": "Programa de intercambio SICUE para conocer cómo diferentes universidades abordan las mismas asignaturas.",
+          "place": "Universidad Complutense de Madrid",
+          "from": "2021",
+          "to": "2022"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Habilidades",
+      "description": "Algunas de mis áreas de conocimiento, pero siempre hay tiempo para aprender cosas nuevas!",
+      "skills":[
+        {
+          "name": "🇪🇸",
+          "type": "idiomas",
+          "level": "Native"
+        },
+        {
+          "name": "🇬🇧",
+          "type": "idiomas",
+          "level": "C1"
+        },
+        {
+          "name": "🇫🇷",
+          "type": "idiomas",
+          "level": "B1"
+        },
+        {
+          "name": "Java",
+          "type": "programación",
+          "level": "C1"
+        },
+        {
+          "name": "Python",
+          "type": "programación",
+          "level": "C1"
+        },
+        {
+          "name": "Javascript/TypeScript",
+          "type": "programación",
+          "level": "B1"
+        },
+        {
+          "name": "C++",
+          "type": "programación",
+          "level": "C1"
+        },
+        {
+          "name": "Bash",
+          "type": "programación",
+          "level": "C1"
+        },
+        {
+          "name": "Git",
+          "type": "herramientas",
+          "level": "C2"
+        },
+        {
+          "name": "Kubernetes",
+          "type": "herramientas",
+          "level": "B1"
+        },
+        {
+          "name": "Quarkus",
+          "type": "programación",
+          "level": "B2"
+        },
+        {
+          "name": "Spring",
+          "type": "programación",
+          "level": "B1"
+        },
+        {
+          "name": "Couchbase",
+          "type": "herramientas",
+          "level": "C1"
+        },
+        {
+          "name": "OpenAPI",
+          "type": "herramientas",
+          "level": "B2"
+        },
+        {
+          "name": "ArgoCD",
+          "type": "herramientas",
+          "level": "B2"
+        }
+      ]
+    },
+    "projects": {
+      "title": "Proyectos Personales",
+      "items": [
+        {
+          "name": "Programación Competitiva",
+          "description": "Participación en el SWERC (South Western Europe Regional Contest). Consiste en un equipo de 3 miembros resolviendo desafíos algorítmicos complejos en un entorno de presión. Clasificado en el puesto 55 en 2022/2023, 46 en 2020/2021 y 80 en 2019/2020.",
+          "link":"https://www.um.es/web/informatica/inicio/-/asset_publisher/9oPl8OoMB0qA/content/id/37746163"
+        },
+        {
+          "name": "Advent of Code",
+          "description": "Cada Adviento, se publican 25 problemas de programación diferentes, uno por día y el objetivo rápida y eficientement. Para ello creé un repositorio con soluciones y explicaciones de cada problema. Por ahora, solo está el de 2024, pero planeo seguir ampliándolo en el futuro.",
+          "link":"https://github.com/42Azul/AdventOfCode2024"
+        },
+        {
+          "name": "NAS Local con Debian & OpenMediaVault",
+          "description": "Configuración de un NAS para compartir fotos familiares y compartir archivos P2P, con automatización adicional mediante scripts en bash y un bot de Telegram en Python.",
+          "link": "https://www.openmediavault.org/"
+        },
+        {
+          "name": "Pokemon TCG Pocket Stats & Collection Web",
+          "description": "Aplicación web para gestionar una colección de cartas del juego móvil y permitir funcionalidades offline para mantener y consultar estadísticas sobre las colecciones.",
+          "link":"https://pokemon-tcg-pocket-web.vercel.app/"
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experiencia",
+      "items": [
+        {
+          "name": "Desarrollador Backend en ALTEN - AMADEUS",
+          "description": "Desarrollo de APIs orientadas a servicios con Quarkus + OpenAPI y Couchbase como base de datos NoSQL. Uso de Kubernetes y ArgoCD para el despliegue y gestión del ciclo de vida de la aplicación. \n Mantenimiento de código legacy en C++.",
+          "place": "Niza, Francia",
+          "from": "2023",
+          "to": "Presente"
+        },
+        {
+          "name": "Desarrollador de API en Javascript en PROSEI",
+          "description": "Prácticas enfocadas en el desarrollo de APIs. El objetivo era simplificar la conexión de los usuarios a un servicio externo para digitalizar y gestionar automáticamente los documentos y facturas de su empresa.",
+          "place": "Murcia/Remoto",
+          "from": "2020",
+          "to": "2020"
+        },
+        {
+          "name": "Monitor Scout en Mafeking 133",
+          "description": "Participación activa en liderazgo y animación de grupos juveniles de 11 a 17 años.",
+          "place": "Cartagena, España",
+          "from": "2017",
+          "to": "2023"
+        }
+      ]
+    }
+  }
+  

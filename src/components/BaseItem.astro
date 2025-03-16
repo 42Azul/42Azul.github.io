@@ -3,24 +3,53 @@
  * BaseItem.astro
  * Renders items dynamically, with proper support for HTML links inside descriptions.
  */
- const { name, description, place, from, to } = Astro.props;
+ const { name, description, place, from, to, link } = Astro.props;
 ---
 
-<div class="group bg-white shadow-lg rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-  <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{name}</h2>
-  
-  {place && (
-    <p class="text-gray-600 mt-2">
-      📍 {place}
-    </p>
-  )}
+<div class="h-full">
+  {link ? (
+    <a href={link} target="_blank" rel="noopener noreferrer" class="block h-full">
+      <div class="h-full group bg-white shadow-lg rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer hover:ring-2 hover:ring-blue-400 flex flex-col justify-between">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{name}</h2>
+          
+          {place && (
+            <p class="text-gray-600 mt-2">
+              📍 {place}
+            </p>
+          )}
 
-  {(from || to) && (
-    <p class="text-gray-500 text-sm mt-1">
-      🕒 {from || "?"} - {to || "?"}
-    </p>
-  )}
+          {(from || to) && (
+            <p class="text-gray-500 text-sm mt-1">
+              🕒 {from || "?"} - {to || "?"}
+            </p>
+          )}
 
-  <!-- Using Astro's set:html directive to render HTML inside JSON -->
-  <p class="text-gray-700 mt-3" set:html={description}></p>
+          <!-- Using Astro's set:html directive to render HTML inside JSON -->
+          <p class="text-gray-700 mt-3" set:html={description}></p>
+        </div>
+      </div>
+    </a>
+  ) : (
+    <div class="h-full group bg-white shadow-lg rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{name}</h2>
+        
+        {place && (
+          <p class="text-gray-600 mt-2">
+            📍 {place}
+          </p>
+        )}
+
+        {(from || to) && (
+          <p class="text-gray-500 text-sm mt-1">
+            🕒 {from || "?"} - {to || "?"}
+          </p>
+        )}
+
+        <!-- Using Astro's set:html directive to render HTML inside JSON -->
+        <p class="text-gray-700 mt-3" set:html={description}></p>
+      </div>
+    </div>
+  )}
 </div>

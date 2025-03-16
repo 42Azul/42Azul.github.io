@@ -1,20 +1,35 @@
 ---
 /**
  * BaseLayout.astro
- * A layout that uses client-side fetching for smooth transitions.
- * The key points:
- *   - Attach nav link handlers once (header doesn't change)
- *   - Attach content link handlers after each fetch
+ *
+ * Expects:
+ *   - lang: 'en' or 'es' (or more languages in the future)
+ *   - currentPath: the main route segment, e.g. '' (home), 'about', 'projects', ...
+ *
+ * Then it uses a smooth navigation script for fetching content.
  */
- const currentPath = Astro.url.pathname;
+
+ const { lang = 'en', currentPath = '' } = Astro.props;
+
+// We'll build all URLs with a "/{lang}/..." prefix, so each link goes to the right language route.
+const prefix = `/${lang}`;
+
+// For convenience, define some labels. If you want to add more languages later, just extend this logic.
+const labels = {
+  home: lang === 'es' ? 'Inicio' : 'Home',
+  about: lang === 'es' ? 'Sobre mí' : 'About Me',
+  projects: lang === 'es' ? 'Proyectos' : 'Projects',
+  education: lang === 'es' ? 'Formación y Habilidades' : 'Education & Skills',
+  experience: lang === 'es' ? 'Experiencia' : 'Experience',
+};
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>Portfolio</title>
     <!-- Include Tailwind or your CSS build if needed -->
     <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
@@ -22,35 +37,75 @@
     <!-- Top Navigation Bar -->
     <header class="bg-white shadow-md w-full fixed top-0 left-0 z-50">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold">Fernando</div>
+        <div class="text-2xl font-bold"></div>
+
+        <!-- Navigation Links -->
         <div class="space-x-6">
+          <!-- About -->
           <a
-            href="/"
-            class={`nav-link ${currentPath === '/' ? 'active' : ''}`}
+            href={`${prefix}/`}
+            class={`nav-link ${currentPath === 'about' ? 'active' : ''}`}
           >
-            About Me
+            {labels.about}
           </a>
+
+          <!-- Projects -->
           <a
-            href="/projects"
-            class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`}
+            href={`${prefix}/projects`}
+            class={`nav-link ${currentPath === 'projects' ? 'active' : ''}`}
           >
-            Projects
+            {labels.projects}
           </a>
+
+          <!-- Education -->
           <a
-            href="/formation"
-            class={`nav-link ${currentPath === '/formation' ? 'active' : ''}`}
+            href={`${prefix}/education`}
+            class={`nav-link ${currentPath === 'education' ? 'active' : ''}`}
           >
-            Formation
+            {labels.education}
           </a>
+
+          <!-- Experience -->
           <a
-            href="/experience"
-            class={`nav-link ${currentPath === '/experience' ? 'active' : ''}`}
+            href={`${prefix}/experience`}
+            class={`nav-link ${currentPath === 'experience' ? 'active' : ''}`}
           >
-            Experience
+            {labels.experience}
           </a>
+        </div>
+
+        <!-- Simple language dropdown -->
+        <div>
+          <select class="border py-1 px-2" id="langSwitcher">
+            <option value="en" selected={lang === 'en'}>EN</option>
+            <option value="es" selected={lang === 'es'}>ES</option>
+          </select>
         </div>
       </nav>
     </header>
+
+    <script type="module" client:load>
+      // Function to switch language while keeping the same page
+      window.navigateLang = function(newLang) {
+        // Get the current path without the language prefix
+        const currentPath = window.location.pathname.split('/').slice(2).join('/') || '';
+    
+        // Construct new path with selected language
+        const newPath = `/${newLang}/${currentPath}`;
+    
+        // Redirect to the new path
+        window.location.href = newPath;
+      };
+    
+      // Wait until the page is ready, then attach event listener
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("langSwitcher").addEventListener("change", function () {
+          navigateLang(this.value);
+        });
+      });
+    </script>
+    
+    
 
     <!-- Main Content (Smoothly Updated) -->
     <main id="content" class="mt-20 p-6 flex-grow fade-container">
@@ -59,30 +114,27 @@
 
     <!-- Smooth Navigation Script -->
     <script type="module" client:load>
-      // We'll track whether we've initialized the header nav links so we don't do it multiple times
       let navInitialized = false;
-
-      // The main container we'll be replacing
       const contentContainer = document.getElementById('content');
 
+      // On page load, set up link handling
       document.addEventListener('DOMContentLoaded', () => {
-        initNavLinks();                 // run once for the header
-        initContentLinks(contentContainer); // run for the <main> content
+        initNavLinks();
+        initContentLinks(contentContainer);
       });
 
-      // This runs if user presses back/forward
+      // When user presses back/forward in history
       window.addEventListener('popstate', () => {
         navigateTo(window.location.pathname);
       });
 
       function initNavLinks() {
-        if (navInitialized) return; // ensure we only do this once
+        if (navInitialized) return;
         navInitialized = true;
 
         const headerLinks = document.querySelectorAll('header .nav-link');
         headerLinks.forEach((link) => {
           const url = new URL(link.href, window.location.origin);
-          // Only same-origin links
           if (url.origin === window.location.origin) {
             link.addEventListener('click', (e) => {
               if (link.target === '_blank' || url.pathname === window.location.pathname) return;
@@ -94,7 +146,6 @@
       }
 
       function initContentLinks(container) {
-        // Attach link handlers for newly loaded content
         const links = container.querySelectorAll('a');
         links.forEach((link) => {
           const url = new URL(link.href, window.location.origin);
@@ -108,7 +159,22 @@
         });
       }
 
-      function navigateTo(path) {
+      /**
+       * navigateLang(newLang):
+       *   Called when user picks a different language from the dropdown.
+       *   We'll preserve the same 'currentPath' from props (passed by the page)
+       *   so the user remains on the "same" page, but in the new language.
+       */
+      function navigateLang(newLang) {
+        // The 'data-currentpath' attribute is set on the <main> tag for easy retrieval.
+        // Alternatively, you could store it in a global variable or pass it into the script.
+        const currentPage = document.querySelector('main').dataset.currentpath || '';
+        // Example: if currentPage = 'projects', then we go to `"/en/projects"`.
+        const newPath = `/${newLang}/${currentPage}`;
+        navigateTo(newPath);
+      }
+
+      async function navigateTo(path) {
         // Fade out
         contentContainer.classList.remove('fade-in');
         contentContainer.classList.add('fade-out');
@@ -139,7 +205,6 @@
           // Re-init link handlers in new content
           initContentLinks(contentContainer);
 
-          // Remove fade-in after animation so fade-out can be triggered again later
           contentContainer.addEventListener(
             'animationend',
             () => {
@@ -147,7 +212,7 @@
             },
             { once: true }
           );
-        }, 300); // match your fade-out time
+        }, 300); // match fade-out time
       }
 
       function updateActiveLink(newPath) {
