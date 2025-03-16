@@ -2,7 +2,7 @@
     "about": {
       "title": "Fernando de la Gándara Fernández",
       "description": "Desarrollador de software con experiencia en desarrollo backend y resolución de problemas algorítmicos. \n Misionero de productos atractivos.",
-      "profilePicture": "/src/data/profile.jpg",
+      "profilePicture": "/profile.jpg",
       "contact": {
         "email": "ferdelagandara@gmail.com",
         "github": "https://github.com/42Azul",

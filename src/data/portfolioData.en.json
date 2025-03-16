@@ -2,7 +2,7 @@
   "about": {
     "title": "Fernando de la Gándara Fernández",
     "description": "Software Developer with experience in backend development and algorithmic problem-solving. \n Missionary of appealing products.",
-    "profilePicture": "/src/data/profile.jpg",
+    "profilePicture": "/profile.jpg",
     "contact": {
       "email": "ferdelagandara@gmail.com",
       "github": "https://github.com/42Azul",
