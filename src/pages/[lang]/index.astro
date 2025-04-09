@@ -1,5 +1,5 @@
 ---
-// src/pages/[lang]/about.astro
+// src/pages/[lang]/index.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import enData from '../../data/portfolioData.en.json';
 import esData from '../../data/portfolioData.es.json';
@@ -14,9 +14,6 @@ export function getStaticPaths(){
   {params : { lang: 'es'  }},
 ];
 }
-
-// So that our BaseLayout can highlight the current nav link properly, we
-// can pass something like a "currentPath" = 'about'.
 
 ---
 

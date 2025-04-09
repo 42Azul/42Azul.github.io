@@ -120,7 +120,7 @@
         },
         {
           "name": "Advent of Code",
-          "description": "Cada Adviento, se publican 25 problemas de programación diferentes, uno por día y el objetivo rápida y eficientement. Para ello creé un repositorio con soluciones y explicaciones de cada problema. Por ahora, solo está el de 2024, pero planeo seguir ampliándolo en el futuro.",
+          "description": "Cada Adviento, se publican 25 problemas de programación diferentes, uno por día y el objetivo es resolverlos rápido y eficientemente. He creado un repositorio con soluciones y explicaciones de cada problema. Por ahora, solo está el de 2024, pero planeo seguir ampliándolo en el futuro.",
           "link":"https://github.com/42Azul/AdventOfCode2024"
         },
         {
@@ -132,6 +132,16 @@
           "name": "Pokemon TCG Pocket Stats & Collection Web",
           "description": "Aplicación web para gestionar una colección de cartas del juego móvil y permitir funcionalidades offline para mantener y consultar estadísticas sobre las colecciones.",
           "link":"https://pokemon-tcg-pocket-web.vercel.app/"
+        },
+        {
+          "name": "World Population Roulette",
+          "description": "Una página web que permite seleccionar aleatoriamente (en función de la densidad de población) una ciudad del mundo. Utiliza estadísticas y un heatmap para mostrar el impacto de la distribución desigual de la población.",
+          "link": "https://world-pop-roulette-front.vercel.app/"
+        },
+        {
+          "name": "Este portfolio :)",
+          "description": "Este portfolio es un proyecto personal para mostrar mis skills, proyectos y otras cosas. Construido con Astro y Tailwind CSS",
+          "link": "https://42azul.github.io/"
         }
       ]
     },

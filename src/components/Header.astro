@@ -1,0 +1,87 @@
+---
+import Hamburger from './Hamburger.astro';
+
+// We expect the parent (BaseLayout) to pass these props in.
+const { lang = 'en', currentPath = '' } = Astro.props;
+
+// We'll build all URLs with a `/{lang}/...` prefix so each link points to the right language route.
+const prefix = `/${lang}`;
+
+// Define labels for each language
+const labels = {
+  home: lang === 'es' ? 'Inicio' : 'Home',
+  about: lang === 'es' ? 'Sobre mí' : 'About Me',
+  projects: lang === 'es' ? 'Proyectos' : 'Projects',
+  education: lang === 'es' ? 'Formación y Habilidades' : 'Education & Skills',
+  experience: lang === 'es' ? 'Experiencia' : 'Experience',
+};
+---
+<header class="bg-white shadow-md w-full fixed top-0 left-0 z-50">
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Site logo or name -->
+    <div class="text-2xl font-bold">
+      <!-- optional site title -->
+      My Portfolio
+    </div>
+
+    <!-- Mobile-only Hamburger (hidden on larger screens via CSS) -->
+    <Hamburger />
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <!-- About -->
+      <li>
+        <a
+          href={`${prefix}/`}
+          class={`nav-link ${currentPath === 'about' ? 'active' : ''}`}
+        >
+          {labels.about}
+        </a>
+      </li>
+      <!-- Projects -->
+      <li>
+        <a
+          href={`${prefix}/projects`}
+          class={`nav-link ${currentPath === 'projects' ? 'active' : ''}`}
+        >
+          {labels.projects}
+        </a>
+      </li>
+      <!-- Education -->
+      <li>
+        <a
+          href={`${prefix}/education`}
+          class={`nav-link ${currentPath === 'education' ? 'active' : ''}`}
+        >
+          {labels.education}
+        </a>
+      </li>
+      <!-- Experience -->
+      <li>
+        <a
+          href={`${prefix}/experience`}
+          class={`nav-link ${currentPath === 'experience' ? 'active' : ''}`}
+        >
+          {labels.experience}
+        </a>
+      </li>
+    </ul>
+
+    <!-- Language Switcher -->
+    <div>
+      <select class="border py-1 px-2" id="langSwitcher">
+        <option value="en" selected={lang === 'en'}>EN</option>
+        <option value="es" selected={lang === 'es'}>ES</option>
+      </select>
+    </div>
+  </nav>
+</header>
+
+<!-- We import (or inline) the script that handles:
+     - toggling the .expanded class for mobile nav
+     - switching languages
+     - smooth page transitions
+-->
+<script type="module" client:load>
+  import '../scripts/menu.js';
+</script>

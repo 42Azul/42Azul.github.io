@@ -70,3 +70,59 @@ html {
     width: 100%;
   }
 
+  /* Make .nav-links hidden by default on mobile */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 4rem;
+  right: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+/* Show .nav-links when .expanded is added */
+.nav-links.expanded {
+  display: flex;
+}
+
+/* The hamburger bars */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.hamburger .line {
+  width: 30px;
+  height: 3px;
+  background-color: #444;
+  margin: 4px 0;
+}
+
+/* On larger screens, hide the hamburger and show nav inline */
+@media screen and (min-width: 640px) {
+  .hamburger {
+    display: none;
+  }
+  .nav-links {
+    position: static;
+    display: flex;
+    background: none;
+    box-shadow: none;
+    flex-direction: row;
+    align-items: center;
+  }
+  .nav-links li {
+    margin-left: 1.5rem;
+  }
+}
+
+

@@ -133,6 +133,17 @@
         "name": "Pokemon TCG Pocket Stats & Collection Web",
         "description": "Web application for managing a collection of cards for the mobile game and allowing offline capabilities to maintain and check statistics on your collections.",
         "link":"https://pokemon-tcg-pocket-web.vercel.app/"
+      },
+      {
+        "name": "World Population Roulette",
+        "description": "A web page that allows you to randomly select (based on population density) a city in the world. Using stats and heatmap to show the impact of the uneven population distribution.",
+        "link": "https://world-pop-roulette-front.vercel.app/"
+      },
+      {
+        "name": "This portfolio!",
+        "description": "This portfolio is a personal project to showcase my skills projects and others. Built with Astro and Tailwind CSS",
+        "link": "https://42azul.github.io/en/"
+
       }
       
     ]
